@@ -2,6 +2,7 @@ import java.text.StringCharacterIterator;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,14 +57,78 @@ Set<Map.Entry<String, Integer>> entries = estadosNe.entrySet();
 String estadoMaisPopuloso = "";
 
 for (Map.Entry<String, Integer> entry : entries) {
+
      if (entry.getValue().equals(maiorPopulacao)) {
+
      estadoMaisPopuloso = entry.getKey();
 
      System.out.println("Estado mais populoso: " + estadoMaisPopuloso + " - " + maiorPopulacao);
 
      }
-   
+
     }
+
+     //Estado com a menor população, vamos trabalhar com a chave e o valor separadamente, método values retorna uma Collection de valores e o KeySet retorna um Set, vamos trabalhar com eles separadamente, mas tendo ligação
+
+    System.out.println("Exiba o Estado menos populoso: ");
+
+    Integer menorPopulacao = Collections.min(estadosNe.values());
+
+    String estadoMenosPopuloso = "";
+
+    for (Map.Entry<String,Integer> entry2 : estadosNe.entrySet()) {
+
+        if (entry2.getValue().equals(menorPopulacao)) {
+
+        estadoMenosPopuloso = entry2.getKey();
+
+        System.out.println("Menos populoso: " + estadoMenosPopuloso + " - " + menorPopulacao);
+
+        }
+        
+    }
+
+
+    System.out.println("EXIBA A SOMA DOS CONSUMOS: ");
+
+    Iterator<Integer> iterator = estadosNe.values().iterator();
+
+    Integer soma = 0;
+    while(iterator.hasNext()) {
+
+        soma += iterator.next();
+    }
+
+    System.out.println("Soma das populações: " + soma);
+
+    System.out.println("EXIBA A MÉDIA DA SOMA DAS POPULAÇÕES: ");
+
+    System.out.println("A média é : " + soma/estadosNe.size());
+
+    System.out.println(estadosNe);
+
+    System.out.println("REMOVA OS ESTADOS COM A POPULAÇÃO MENOR DO QUE 4 MILHÕES");
+
+    Iterator<Integer> iterator1 = estadosNe.values().iterator();
+
+    while(iterator1.hasNext()) {
+         if (iterator1.next() < 4000000) iterator1.remove();
+    }
+
+    System.out.println(estadosNe);
+
+    System.out.println("APAGUE O DICIONÁRIO DE ESTADOS DO NE");
+
+    estadosNe.clear();
+
+    System.out.println("CONFIRA SE O DICIONÁRIO ESTÁ VAZIO: ");
+
+    System.out.println("O dicionário está vazio? " + estadosNe.isEmpty());
+
+
+
+
+
 
     
 
